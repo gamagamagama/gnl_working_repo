@@ -74,6 +74,10 @@ char	*ft_reader(int fd, char *result)
 
 	string_buffer = ft_calloc(sizeof(char), (BUFFER_SIZE + 1));
 	byte = 1;
+	if (!string_buffer)
+	{
+		return (NULL);
+	}
 	while (byte > 0)
 	{
 		byte = read(fd, string_buffer, BUFFER_SIZE);

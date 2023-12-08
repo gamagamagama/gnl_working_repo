@@ -19,6 +19,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <fcntl.h>
+#include <limits.h>
 #include <string.h>
 
 #ifndef BUFFER_SIZE
@@ -26,16 +27,15 @@
 
 #endif
 
-
-
 char	*get_next_line(int fd);
 char	*ft_free(char *result_buffer, char *string_buffer);
 char	*ft_reader(int fd, char *result);
 char	*ft_strrchr(char *s, int c);
-size_t  ft_strlen(char *str);
 char	*ft_strjoin(char *s1, char *s2);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	ft_bzero(void *s, size_t n);
 char	*ft_next(char *string_buffer);
+size_t  ft_strlen(char *str);
+
 
 #endif
