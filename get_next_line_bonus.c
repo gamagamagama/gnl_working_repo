@@ -9,6 +9,7 @@ char	*ft_next(char *string_buffer)
 	int		j;
 
 	i = 0;
+	
 	while (string_buffer[i] && string_buffer[i] != '\n')
 		i++;
 	if(!string_buffer[i])
@@ -24,7 +25,7 @@ char	*ft_next(char *string_buffer)
 		next[j++] = string_buffer[i++];
 	}
 	next[j] = '\0';
-	free(string_buffer);
+	free(next);
 	return (next);
 }
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgavorni <mgavorni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 17:02:20 by mgavorni          #+#    #+#             */
-/*   Updated: 2023/11/30 17:02:21 by mgavorni         ###   ########.fr       */
+/*   Updated: 2023/12/08 17:52:44 by mgavorni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,13 @@ char	*ft_strjoin(char *s1, char *s2)
 	i = 0;
 	j = 0;
 	if (!(s1))
+	{
 		s1 = ft_calloc(1, 1);
+		if(!s1)
+		{
+			return (NULL);
+		}
+	}
 	if (!(s1) || !(s2))
 		return (NULL);
 	new_s = (char *)malloc(((ft_strlen(s1)) + (ft_strlen(s2)) + 1)
@@ -67,7 +73,6 @@ char	*ft_strjoin(char *s1, char *s2)
 		j++;
 	}
 	new_s[i + j] = '\0';
-	// free(s1);
 	return (new_s);
 }
 
@@ -85,7 +90,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	ptr = malloc(nmemb * size);
 	if (!ptr)
 	{
-		ptr = ft_calloc(1, 1);
+		ptr = malloc(0);
 		return (NULL);
 	}
 	ft_bzero(ptr, nmemb * size);
