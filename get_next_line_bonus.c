@@ -1,16 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mgavorni <mgavorni@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/30 17:02:25 by mgavorni          #+#    #+#             */
-/*   Updated: 2023/12/01 16:22:28 by mgavorni         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
+
 
 char	*ft_next(char *string_buffer)
 {
@@ -82,10 +72,6 @@ char	*ft_reader(int fd, char *result)
 	char *string_buffer;
 	int	byte;
 
-	if (!result)
-	{
-		result = ft_calloc(1, 1);
-	}
 	string_buffer = ft_calloc(sizeof(char), (BUFFER_SIZE + 1));
 	byte = 1;
 	while (byte > 0)
@@ -111,19 +97,21 @@ char	*ft_reader(int fd, char *result)
 
 char	*get_next_line(int fd)
 {
-	static char *string_buffer;
+	static char *string_buffer[FOPEN_MAX];
 	char		*line;
 
-	if(fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if(fd < 0 || BUFFER_SIZE <= 0 || fd > FOPEN_MAX)
 		return(NULL);
-	string_buffer = ft_reader(fd, string_buffer);
-	if(!string_buffer)
+	string_buffer[fd] = ft_reader(fd, string_buffer[fd]);
+	if(!string_buffer[fd])
 		return(NULL);
-	line = ft_line(string_buffer);
-	string_buffer = ft_next(string_buffer);
+	line = ft_line(string_buffer[fd]);
+	string_buffer[fd] = ft_next(string_buffer[fd]);
 	return(line);
 
 }
+
+
 
 // int main(void)
 // {
